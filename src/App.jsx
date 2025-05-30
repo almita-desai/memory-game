@@ -1,4 +1,5 @@
 import React, { useDeferredValue, useRef, useState } from 'react';
+import Card from './components/Card';
 
 const cardImages=[
   {"src":"/src/assets/img/img0.png"},
@@ -32,17 +33,14 @@ function App(){
       <button onClick={shuffleCards} className='button'> 
         New Game
       </button>
-      <div className='grid grid-cols-4 gap-8'>
+    <div className='grid grid-cols-4 gap-8'>
        {
         card.map(card=>(
-          <div key={card.id}>
-          <img  className='img' src={card.src} alt="card-front" />
-          <img className='img'src="/src/assets/img/cover.jpg" alt="card-back" />
-          </div>
-  
+          <Card key={card.id} card={card}></Card>
         ))
        }
-      </div>
+    </div>
+
     </div>
     </>
   )
