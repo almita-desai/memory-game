@@ -32,6 +32,17 @@ function App(){
       <button onClick={shuffleCards} className='button'> 
         New Game
       </button>
+      <div className='grid grid-cols-4 gap-8'>
+       {
+        card.map(card=>(
+          <div key={card.id}>
+          <img  className='img' src={card.src} alt="card-front" />
+          <img className='img'src="/src/assets/img/cover.jpg" alt="card-back" />
+          </div>
+  
+        ))
+       }
+      </div>
     </div>
     </>
   )

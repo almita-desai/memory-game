@@ -14,3 +14,6 @@ body {
   @apply font-bold text-2xl bg-amber-600 p-2 
   rounded-xl transform transition duration-200 hover:bg-amber-300 hover:translate-y-0.5 
 }
+.img{
+  @apply size-40 bg-pink-300 m-1 p-2 rounded-xl
+}
