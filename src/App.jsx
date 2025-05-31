@@ -2,16 +2,16 @@ import React, { useEffect,useState } from 'react';
 import Card from './components/Card';
 
 const cardImages=[
-  {"src":"/src/assets/img/img0.png"},
-  {"src":"/src/assets/img/img1.png"},
-  {"src":"/src/assets/img/img2.png"},
-  {"src":"/src/assets/img/img3.png"},
-  {"src":"/src/assets/img/img4.png"},
-  {"src":"/src/assets/img/img5.png"},
-  {"src":"/src/assets/img/img6.png"},
-  {"src":"/src/assets/img/img7.png"},
-  {"src":"/src/assets/img/img8.png"},
-  {"src":"/src/assets/img/img9.png"}
+  {"src":"/src/assets/img/img0.png",matched:false},
+  {"src":"/src/assets/img/img1.png",matched:false},
+  {"src":"/src/assets/img/img2.png",matched:false},
+  {"src":"/src/assets/img/img3.png",matched:false},
+  {"src":"/src/assets/img/img4.png",matched:false},
+  {"src":"/src/assets/img/img5.png",matched:false},
+  {"src":"/src/assets/img/img6.png",matched:false},
+  {"src":"/src/assets/img/img7.png",matched:false},
+  {"src":"/src/assets/img/img8.png",matched:false},
+  {"src":"/src/assets/img/img9.png",matched:false}
 ]
 
 function App(){
@@ -40,15 +40,26 @@ function App(){
   useEffect(() => {
   if(choiceOne && choiceTwo){
     if(choiceOne.src=== choiceTwo.src){
-      console.log('match')
-      resetCard()
-    }
+      setCard(prevCard=>{
+        return prevCard.map(card=>{
+          if(card.src===choiceTwo.src){
+            return {...card,matched:true}
+          }
+          else{
+            return card
+          } })
+        })
+        resetCard()
+      }
+    
     else{
       console.log('not match')
       resetCard()
     }
   }
- }, [choiceOne,choiceTwo]);
+ }, [choiceTwo]);
+
+ console.log(card)
 
  const resetCard=()=>{
   setChoiceOne(null)
