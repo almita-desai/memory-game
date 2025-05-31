@@ -1,4 +1,4 @@
-import React, { useDeferredValue, useRef, useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import Card from './components/Card';
 
 const cardImages=[
@@ -17,15 +17,44 @@ const cardImages=[
 function App(){
   const [card, setCard] = useState([]);
   const [turn, setTurn] = useState(0);
+  const [choiceOne, setChoiceOne] = useState(null);
+  const [choiceTwo, setChoiceTwo] = useState(null);
 
   const shuffleCards=()=>{
   const shuffledCards=[...cardImages,...cardImages]
   .sort(()=>Math.random()-0.5)
   .map((card)=>({...card,id:Math.random()}))
   setCard(shuffledCards)
-  setTurn(turn+1)
+  setTurn(0)
   }
-  console.log(card,turn)
+  const handleChoice=(card)=>{
+    if (choiceOne==null){
+      setChoiceOne(card)
+
+    }
+    else{
+      setChoiceTwo(card)
+    }
+  }
+  console.log(choiceOne,choiceTwo)
+  useEffect(() => {
+  if(choiceOne && choiceTwo){
+    if(choiceOne.src=== choiceTwo.src){
+      console.log('match')
+      resetCard()
+    }
+    else{
+      console.log('not match')
+      resetCard()
+    }
+  }
+ }, [choiceOne,choiceTwo]);
+
+ const resetCard=()=>{
+  setChoiceOne(null)
+  setChoiceTwo(null)
+  setTurn(turn+1)
+ }
   return(
     <>
     <div className='flex flex-col justify-center items-center'>
@@ -36,8 +65,12 @@ function App(){
     <div className='grid grid-cols-4 gap-8'>
        {
         card.map(card=>(
-          <Card key={card.id} card={card}></Card>
-        ))
+          <Card key={card.id} 
+          handleChoice={handleChoice}
+          card={card}>
+
+          </Card>
+        )) 
        }
     </div>
 
