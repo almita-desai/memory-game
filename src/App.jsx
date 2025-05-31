@@ -24,6 +24,7 @@ function App(){
   const [turn, setTurn] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
+  const [disable, setDisable] = useState(false);
 
   const shuffleCards=()=>{
   const shuffledCards=[...cardImages,...cardImages]
@@ -44,6 +45,7 @@ function App(){
   console.log(choiceOne,choiceTwo)
   useEffect(() => {
   if(choiceOne && choiceTwo){
+    setDisable(true)
     if(choiceOne.src=== choiceTwo.src){
       setCard(prevCard=>{
         return prevCard.map(card=>{
@@ -72,6 +74,7 @@ function App(){
   setChoiceOne(null)
   setChoiceTwo(null)
   setTurn(turn+1)
+  setDisable(false)
  }
  useEffect(() => {
   shuffleCards();
@@ -80,11 +83,11 @@ function App(){
   return(
     <>
     <div className='flex flex-row justify-start h-screen'>
-      <div className='flex flex-col left-0 w-[360px] items-center rounded-r-md' style={{ backgroundColor: "#191970" }}>
+      <div className='flex flex-col left-0 w-[360px] items-center rounded-r-md' style={{ backgroundColor: "#3f185b" }}>
       <h1 className='text-4xl m-7 '>Memory Game</h1>
       <button onClick={shuffleCards} className='button'> 
       New Game
-    </button>
+      </button>
       </div>
     
     <div className='grid grid-cols-6 gap-0 p-7 mx-54 my-10'>
@@ -94,8 +97,9 @@ function App(){
           <Card key={card.id} 
           handleChoice={handleChoice}
           card={card}
-          flipped={card===choiceOne|| card===choiceTwo|| card.matched}>
-
+          flipped={card===choiceOne|| card===choiceTwo|| card.matched}
+          disable={disable}
+          >
           </Card>
         )) 
        }
