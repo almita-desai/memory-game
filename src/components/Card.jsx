@@ -1,16 +1,18 @@
 import React from 'react'
 
-const Card = ({card,handleChoice}) => {
+const Card = ({card,handleChoice,flipped}) => {
     const handleCard=()=>{
         handleChoice(card)
     }
   return (
-          <div key={card.id}>
-          <img  className='img' src={card.src} alt="card-front" />
-          <img className='img'
+          <div key={card.id} className={`card ${flipped ? "flipped" :" "}`}>
+
+          <img  className='card-front' src={card.src} alt="card-front" />
+          <img className='card-back'
           src="/src/assets/img/cover.jpg" 
           onClick={handleCard}
           alt="card-back" />
+
           </div>
   )
 }
