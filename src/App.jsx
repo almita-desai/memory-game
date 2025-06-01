@@ -27,6 +27,12 @@ function App(){
   const [disable, setDisable] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [timer, setTimer] = useState(0);
+  const [highScore, setHighScore] = useState(() => {
+  const stored = parseInt(localStorage.getItem('highScore'));
+  return !isNaN(stored) && stored > 0 ? stored : 9999;
+});
+
+  const [gameOver, setGameOver] = useState(false);
 
   const shuffleCards=()=>{
   const shuffledCards=[...cardImages,...cardImages]
@@ -34,10 +40,18 @@ function App(){
   .map((card)=>({...card,id:Math.random()}))
   setCard(shuffledCards)
   setTurn(0)
-  setIsActive(true)
   setTimer(0)
+  setIsActive(false)
+  setChoiceOne(null);
+  setChoiceTwo(null);
+  setGameOver(false);
+
   }
   const handleChoice=(card)=>{
+  if (!isActive && timer === 0) {
+    setIsActive(true);
+
+  }
     if (choiceOne==null){
       setChoiceOne(card)
 
@@ -46,19 +60,26 @@ function App(){
       setChoiceTwo(card)
     }
   }
-  console.log(choiceOne,choiceTwo)
+  
   useEffect(() => {
   if(choiceOne && choiceTwo){
     setDisable(true)
     if(choiceOne.src=== choiceTwo.src){
       setCard(prevCard=>{
-        return prevCard.map(card=>{
+        const updatedCards = prevCard.map(card => {
           if(card.src===choiceTwo.src){
             return {...card,matched:true}
           }
           else{
             return card
           } })
+        const allMatched = updatedCards.every(card => card.matched);
+        if (allMatched) {
+          setIsActive(false);
+          setGameOver(true);
+        }
+
+        return updatedCards;
         })
         resetCard()
       }
@@ -71,8 +92,6 @@ function App(){
     }
   }
  }, [choiceTwo]);
-
- console.log(card)
 
  const resetCard=()=>{
   setChoiceOne(null)
@@ -95,11 +114,18 @@ useEffect(() => {
 }, [isActive]);
 
 useEffect(() => {
-  if(card.every(card=> card.matched)){
-    setIsActive(false)
+  if (gameOver) {
+    const currentScore = timer;
+    const storedScore = parseInt(localStorage.getItem('highScore'));
+
+    if ((isNaN(storedScore) || currentScore < storedScore) && currentScore > 0) {
+      localStorage.setItem('highScore', currentScore);
+      setHighScore(currentScore);
+    }
+
+    setGameOver(false);
   }
-  
-}, [card]);
+}, [gameOver]);
 
   return(
     <>
@@ -107,12 +133,16 @@ useEffect(() => {
       <div className='flex flex-col left-0 w-[360px] items-center rounded-r-md' style={{ backgroundColor: "#3f185b" }}>
       <h1 className='text-4xl m-7'>Memory Game</h1>
       <button onClick={shuffleCards} className='button'> 
-      Start
+      New Game 
       </button>
-      <p className='text-2xl font-bold m-7'>Turns : {turn}</p>
-      <p className="font-semibold text-lg m-7">Time: {String(Math.floor(timer / 60)).padStart(2, '0')}:
+      <p className="text-2xl font-bold mt-9">Timer: {String(Math.floor(timer / 60)).padStart(2, '0')}:
         {String(timer % 60).padStart(2, '0')}
-      </p>          
+      </p>
+      {/* <p className='font-semibold text-xl m-4'>Turns : {turn}</p> */}
+      <p className="font-bold text-xl m-6">
+        🏆 Best Time: {highScore === 9999 ? '--:--' : 
+        `${String(Math.floor(highScore / 60)).padStart(2, '0')}:${String(highScore % 60).padStart(2, '0')}`}
+      </p>
       </div>
     
     <div className='grid grid-cols-6 gap-0 p-7 mx-54 my-10'>
