@@ -2,21 +2,24 @@ import React, { useEffect,useState } from 'react';
 import Card from './components/Card';
 
 const cardImages=[
-  {"src":"/src/assets/img/img1.png",matched:false},
-  {"src":"/src/assets/img/img2.png",matched:false},
-  {"src":"/src/assets/img/img3.png",matched:false},
-  {"src":"/src/assets/img/img4.png",matched:false},
-  {"src":"/src/assets/img/img5.png",matched:false},
-  {"src":"/src/assets/img/img6.png",matched:false},
-  {"src":"/src/assets/img/img7.png",matched:false},
-  {"src":"/src/assets/img/img8.png",matched:false},
-  {"src":"/src/assets/img/img9.png",matched:false},
-  {"src":"/src/assets/img/img10.png",matched:false},
-  {"src":"/src/assets/img/img11.png",matched:false},
-  {"src":"/src/assets/img/img12.png",matched:false},
-  {"src":"/src/assets/img/img13.png",matched:false},
-  {"src":"/src/assets/img/img14.png",matched:false},
-  {"src":"/src/assets/img/img15.png",matched:false},
+  {"src":"/src/assets/img/img1.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img2.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img3.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img4.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img5.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img6.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img7.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img8.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img9.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img10.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img11.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img12.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img13.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img14.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img15.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img16.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img17.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img18.png",matched:false,peek:false},
 ]
 
 function App(){
@@ -31,6 +34,8 @@ function App(){
   const stored = parseInt(localStorage.getItem('highScore'));
   return !isNaN(stored) && stored > 0 ? stored : 9999;
 });
+const [peek, setPeek] = useState(false);
+const [peekLeft, setPeekLeft] = useState(1);
 
   const [gameOver, setGameOver] = useState(false);
 
@@ -45,6 +50,31 @@ function App(){
   setChoiceOne(null);
   setChoiceTwo(null);
   setGameOver(false);
+  setPeekLeft(1)
+
+  }
+  useEffect(() => {
+      setCard(prev=>prev.map(card=>{
+      return {...card,matched:true}
+    
+   }))   
+   setTimeout(() => {
+      setCard(prev=>prev.map(card=>{
+      if(!card.peek){
+      return {...card,matched:false}   
+      }
+      else{
+        return card
+      }
+   })) 
+   setPeek(false)
+   }, 1000);
+  }, [peek]);
+  const handlePeek=()=>{
+    if(peekLeft>0 && !peek){
+      setPeek(true)
+      setPeekLeft(0)
+    }
 
   }
   const handleChoice=(card)=>{
@@ -68,7 +98,7 @@ function App(){
       setCard(prevCard=>{
         const updatedCards = prevCard.map(card => {
           if(card.src===choiceTwo.src){
-            return {...card,matched:true}
+            return {...card,matched:true,peek:true}
           }
           else{
             return card
@@ -130,23 +160,27 @@ useEffect(() => {
   return(
     <>
     <div className='flex flex-row justify-start h-screen'>
-      <div className='flex flex-col left-0 w-[360px] items-center rounded-r-md' style={{ backgroundColor: "#3f185b" }}>
+      <div className='flex flex-col left-0 w-[340px] items-center rounded-r-md' style={{ backgroundColor: "#3f185b" }}>
       <h1 className='text-4xl m-7'>Memory Game</h1>
       <button onClick={shuffleCards} className='button'> 
       New Game 
       </button>
-      <p className="text-2xl font-bold mt-9">Timer: {String(Math.floor(timer / 60)).padStart(2, '0')}:
-        {String(timer % 60).padStart(2, '0')}
-      </p>
       {/* <p className='font-semibold text-xl m-4'>Turns : {turn}</p> */}
       <p className="font-bold text-xl m-6">
         🏆 Best Time: {highScore === 9999 ? '--:--' : 
         `${String(Math.floor(highScore / 60)).padStart(2, '0')}:${String(highScore % 60).padStart(2, '0')}`}
       </p>
+      <button className='button' onClick={handlePeek}>
+        peek
+      </button>
       </div>
+        <p className='time'>
+        <img className='w-[32px] h-[30px] rounded-2xl bg-gray-700' src="/src/assets/img/stopwatch.png" alt="timer" />
+        Time: {String(Math.floor(timer / 60)).padStart(2, '0')}:
+        {String(timer % 60).padStart(2, '0')}
+      </p> 
     
-    <div className='grid grid-cols-6 gap-0 p-7 mx-54 my-10'>
-  
+    <div className='grid grid-cols-6  p-3 mx-12 my-4'>
        {
         card.map(card=>(
           <Card key={card.id} 

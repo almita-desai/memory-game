@@ -22,7 +22,7 @@ body {
 }
 
 .card-front {
-  @apply relative border-3 size-28  m-1 p-3 rounded-xl ;
+  @apply relative border-3 size-25 m-1 p-3 rounded-xl ;
   background-color: #3f185b;
   transform: rotateY(90deg);
   transition: all ease-in 0.2s;
@@ -30,7 +30,7 @@ body {
 }
 
 .card-back {
-  @apply absolute size-28 m-1 rounded-xl border-3 ;
+  @apply absolute size-25 m-1 rounded-xl border-3 ;
   transform: rotateY(0deg);
   transition-delay: 0.2s;
 }
@@ -45,5 +45,8 @@ body {
   transform: rotateY(90deg);
   transition-delay: 0s;
 
+}
+.time{
+  @apply m-4 font-bold text-2xl text-gray-700 bg-white h-[40px] p-1 rounded-3xl w-[200px]  flex flex-row
 }
 
