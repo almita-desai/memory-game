@@ -204,7 +204,7 @@ useEffect(() => {
  return (
     <div className="flex flex-col lg:flex-row h-screen ">
       <div className="lg:hidden w-full mb-4 flex flex-col items-center ">
-        <h1 className="text-4xl font-bold mt-6 mb-3 text-[#3f185b]">Memory Game</h1>
+        <h1 className="text-2xl font-bold mt-3 mb-2 text-[#3f185b]">Memory Game</h1>
         <div className="flex flex-row gap-4 mb-3">
           <button className="button" onClick={shuffleCards}>New Game</button>
           <button className="button" onClick={handlePeek} title="Quick peek once 😏">Peek</button>
@@ -226,8 +226,8 @@ useEffect(() => {
         </p>
       </div>
 
-      <p className="time hidden lg:flex">
-        <img className="w-[32px] h-[30px] rounded-2xl bg-gray-700 mr-2" src="/img/stopwatch.png" alt="timer" />
+      <p className="time hidden lg:flex ">
+        <img className="w-[32px] h-[30px]  rounded-2xl bg-gray-700 mr-2" src="/img/stopwatch.png" alt="timer" />
         Time: {String(Math.floor(timer / 60)).padStart(2, '0')}:{String(timer % 60).padStart(2, '0')}
       </p>
 

@@ -12,8 +12,8 @@ body {
 
 }
 .button{
-  @apply font-bold text-2xl  p-3 w-40
-  rounded-xl transform transition duration-200 hover:bg-amber-300 hover:translate-y-0.5 border-2 ;
+  @apply font-bold text-lg sm:text-lg lg:text-2xl  p-2 w-30 sm:w-30 lg:w-40 h-12 sm:h-12 lg:h-18
+  rounded-xl transform transition duration-200 hover:bg-[#2a103f] sm:hover:bg-[#2a103f] lg:hover:bg-amber-300 hover:translate-y-0.5 border-2 ;
   background:#3f185b;
 
 }
@@ -30,7 +30,7 @@ body {
 }
 
 .card-back {
-  @apply absolute m-1 rounded-xl border-3  w-14 h-14 sm:w-14 sm:h-14 md:w-20 md:h-20 lg:w-24 lg:h-24;
+  @apply absolute m-1 rounded-xl border-3  w-15 h-15 sm:w-15 sm:h-15 md:w-20 md:h-20 lg:w-24 lg:h-24;
   transform: rotateY(0deg);
   transition-delay: 0.2s;
 }
@@ -47,6 +47,6 @@ body {
 
 }
 .time{
-  @apply m-4 font-bold text-2xl text-gray-700 bg-white h-[40px] p-1 rounded-3xl w-[200px]  flex flex-row
+  @apply m-2 sm:m-2 lg:m-4 font-bold text-xl sm:text-xl lg:text-2xl text-gray-700 bg-white h-[40px] sm:h-[30px] lg:h-[40px] p-1 rounded-3xl w-[160px] sm:w-[160px] lg:w-[200px]  flex flex-row
 }
 
