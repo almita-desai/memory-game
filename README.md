@@ -1,12 +1,16 @@
-# React + Vite
+## Memory Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Card matching game built with React. Flip cards to find pairs, use a one-time peek to briefly reveal all cards, and best time is saved with localStorage.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Flip two cards to find matching emoji pairs  
+- One-time peek to reveal all cards briefly  
+- Timer starts after first move  
+- Popups show final time  
+- Best time saved in localStorage  
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React  
+- Tailwind CSS  
