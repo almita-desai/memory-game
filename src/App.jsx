@@ -205,7 +205,6 @@ useEffect(() => {
     <div className="flex flex-col lg:flex-row h-screen ">
       <div className="lg:hidden w-full mb-4 flex flex-col items-center ">
         <h1 className="text-4xl font-bold mt-6 mb-3 text-[#3f185b]">Memory Game</h1>
-         <p className="text-lg font-semibold mb-2 ">Quick peek once 😏</p>
         <div className="flex flex-row gap-4 mb-3">
           <button className="button" onClick={shuffleCards}>New Game</button>
           <button className="button" onClick={handlePeek} title="Quick peek once 😏">Peek</button>
@@ -232,7 +231,7 @@ useEffect(() => {
         Time: {String(Math.floor(timer / 60)).padStart(2, '0')}:{String(timer % 60).padStart(2, '0')}
       </p>
 
-      <div className="grid grid-cols-6 p-3 mx-2 my-3 sm:mx-2 sm:my-3 lg:mx-12 lg:my-6 gap-3 sm:gap-3 lg:gap-1 ">
+      <div className="grid grid-cols-6 p-3 mx-1 my-1 sm:mx-1 sm:my-1 lg:mx-12 lg:my-6 gap-3 sm:gap-3 lg:gap-1 ">
         {card.map(c => (
           <Card
             key={c.id}
