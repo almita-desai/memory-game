@@ -3,24 +3,24 @@ import Card from './components/Card';
 import PopUp from './components/PopUp';
 
 const cardImages=[
-  {"src":"/src/assets/img/img1.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img2.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img3.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img4.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img5.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img6.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img7.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img8.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img9.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img10.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img11.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img12.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img13.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img14.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img15.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img16.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img17.png",matched:false,peek:false},
-  {"src":"/src/assets/img/img18.png",matched:false,peek:false},
+  {"src":"/img/img1.png",matched:false,peek:false},
+  {"src":"/img/img2.png",matched:false,peek:false},
+  {"src":"/img/img3.png",matched:false,peek:false},
+  {"src":"/img/img4.png",matched:false,peek:false},
+  {"src":"/img/img5.png",matched:false,peek:false},
+  {"src":"/img/img6.png",matched:false,peek:false},
+  {"src":"/img/img7.png",matched:false,peek:false},
+  {"src":"/img/img8.png",matched:false,peek:false},
+  {"src":"/img/img9.png",matched:false,peek:false},
+  {"src":"/img/img10.png",matched:false,peek:false},
+  {"src":"/img/img11.png",matched:false,peek:false},
+  {"src":"/img/img12.png",matched:false,peek:false},
+  {"src":"/img/img13.png",matched:false,peek:false},
+  {"src":"/img/img14.png",matched:false,peek:false},
+  {"src":"/img/img15.png",matched:false,peek:false},
+  {"src":"/img/img16.png",matched:false,peek:false},
+  {"src":"/img/img17.png",matched:false,peek:false},
+  {"src":"/img/img18.png",matched:false,peek:false},
 ]
 
 function App(){
@@ -228,11 +228,11 @@ useEffect(() => {
       </div>
 
       <p className="time hidden lg:flex">
-        <img className="w-[32px] h-[30px] rounded-2xl bg-gray-700 mr-2" src="/src/assets/img/stopwatch.png" alt="timer" />
+        <img className="w-[32px] h-[30px] rounded-2xl bg-gray-700 mr-2" src="/img/stopwatch.png" alt="timer" />
         Time: {String(Math.floor(timer / 60)).padStart(2, '0')}:{String(timer % 60).padStart(2, '0')}
       </p>
 
-      <div className="grid grid-cols-6 p-3 mx-12 my-6 gap-1">
+      <div className="grid grid-cols-6 p-3 mx-2 my-3 sm:mx-2 sm:my-3 lg:mx-12 lg:my-6 gap-3 sm:gap-3 lg:gap-1 ">
         {card.map(c => (
           <Card
             key={c.id}

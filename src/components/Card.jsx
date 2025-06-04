@@ -10,7 +10,7 @@ const Card = ({card,handleChoice,flipped,disable}) => {
           <div key={card.id} className={`card ${flipped ? "flipped" :" "}`}>
           <img  className='card-front' src={card.src} alt="card-front" />
           <img className='card-back'
-          src="/src/assets/img/cover.jpg" 
+          src="/img/cover.jpg" 
           onClick={handleCard}
           alt="card-back" />
 
