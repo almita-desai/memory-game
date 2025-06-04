@@ -1,28 +1,28 @@
 @import "tailwindcss";
 
-
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-y: hidden;
+  overflow-y: auto;
+  height: 100%;
+  min-height: 100vh;
   color: #ffffff;
-  background: linear-gradient(135deg, #e6e6fa, #dda0dd, #e0b0ff);
+  background: linear-gradient(120deg, #e6e6fa, #e0b0ff,#dda0dd);
 
 }
 .button{
-  @apply font-bold text-2xl  p-3
+  @apply font-bold text-2xl  p-3 w-40
   rounded-xl transform transition duration-200 hover:bg-amber-300 hover:translate-y-0.5 border-2 ;
   background:#3f185b;
-  /* #191970 */
+
 }
 .card {
   @apply  flex;
 }
 
 .card-front {
-  @apply relative border-3 size-25 m-1 p-3 rounded-xl ;
+  @apply relative border-3 m-1 p-3 rounded-xl w-12 h-12 sm:w-12 sm:h-12 md:w-20 md:h-20 lg:w-24 lg:h-24;
   background-color: #3f185b;
   transform: rotateY(90deg);
   transition: all ease-in 0.2s;
@@ -30,7 +30,7 @@ body {
 }
 
 .card-back {
-  @apply absolute size-25 m-1 rounded-xl border-3 ;
+  @apply absolute m-1 rounded-xl border-3  w-12 h-12 sm:w-12 sm:h-12 md:w-20 md:h-20 lg:w-24 lg:h-24;
   transform: rotateY(0deg);
   transition-delay: 0.2s;
 }

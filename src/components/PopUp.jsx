@@ -7,7 +7,7 @@ const PopUp = ({ message, onClose ,newGame}) => {
       onClick={onClose}
     >
       <div
-        className="bg-black p-6 rounded-xl shadow-md w-90  h-56 text-center relative "
+        className="bg-black p-6 rounded-xl shadow-md   w-90  h-56 text-center relative "
         onClick={(e) => e.stopPropagation()}
       >
        <div className="mb-4 text-lg font-bold text-white">

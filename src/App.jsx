@@ -5,22 +5,22 @@ import PopUp from './components/PopUp';
 const cardImages=[
   {"src":"/src/assets/img/img1.png",matched:false,peek:false},
   {"src":"/src/assets/img/img2.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img3.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img4.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img5.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img6.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img7.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img8.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img9.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img10.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img11.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img12.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img13.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img14.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img15.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img16.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img17.png",matched:false,peek:false},
-  // {"src":"/src/assets/img/img18.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img3.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img4.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img5.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img6.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img7.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img8.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img9.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img10.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img11.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img12.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img13.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img14.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img15.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img16.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img17.png",matched:false,peek:false},
+  {"src":"/src/assets/img/img18.png",matched:false,peek:false},
 ]
 
 function App(){
@@ -201,50 +201,54 @@ useEffect(() => {
     setGameOver(false);
   }
 }, [gameOver]);
+ return (
+    <div className="flex flex-col lg:flex-row h-screen ">
+      <div className="lg:hidden w-full mb-4 flex flex-col items-center ">
+        <h1 className="text-4xl font-bold mt-6 mb-3 text-[#3f185b]">Memory Game</h1>
+         <p className="text-lg font-semibold mb-2 ">Quick peek once 😏</p>
+        <div className="flex flex-row gap-4 mb-3">
+          <button className="button" onClick={shuffleCards}>New Game</button>
+          <button className="button" onClick={handlePeek} title="Quick peek once 😏">Peek</button>
 
 
-  return(
-    <>
-    <div className='flex flex-row justify-start h-screen'>
-      <div className='flex flex-col left-0 w-[340px] items-center rounded-r-md' style={{ backgroundColor: "#3f185b" }}>
-      <h1 className='text-4xl m-7'>Memory Game</h1>
-      <button onClick={shuffleCards} className='button'> 
-      New Game 
-      </button>
-      {/* <p className='font-semibold text-xl m-4'>Turns : {turn}</p> */}
-      <p className="font-bold text-xl m-6">
-        🏆 Best Time: {highScore === 9999 ? '--:--' : 
-        `${String(Math.floor(highScore / 60)).padStart(2, '0')}:${String(highScore % 60).padStart(2, '0')}`}
-      </p>
-      <button className='button' onClick={handlePeek}>
-        peek
-      </button>
+        </div>
+        <div className="text-xl text-gray-800 font-bold">
+          🏆 Best Time: {highScore === 9999 ? '--:--' : `${String(Math.floor(highScore / 60)).padStart(2, '0')}:${String(highScore % 60).padStart(2, '0')}`}
+        </div>
       </div>
-        <p className='time'>
-        <img className='w-[32px] h-[30px] rounded-2xl bg-gray-700 mr-2' src="/src/assets/img/stopwatch.png" alt="timer" />
-        Time: {String(Math.floor(timer / 60)).padStart(2, '0')}:
-        {String(timer % 60).padStart(2, '0')}
-      </p> 
-    
-    <div className='grid grid-cols-6  p-3 mx-12 my-4'>
-       {
-        card.map(card=>(
-          <Card key={card.id} 
-          handleChoice={handleChoice}
-          card={card}
-          flipped={card===choiceOne|| card===choiceTwo|| card.matched}
-          disable={disable}
-          >
-          </Card>
-        )) 
-       }
-    </div>
-       {showPopUp && <PopUp message={popUpMsg} onClose={()=>{setShowPopUp(false)}} newGame={()=>{shuffleCards() ,setShowPopUp(false) }}></PopUp>}
-    </div>
 
-    
-    </>
-  )
+      <div className="hidden lg:flex flex-col w-[300px] items-center bg-[#3f185b] rounded-r-md text-white">
+        <h1 className="text-4xl mt-10 mb-15">Memory Game</h1>
+        <button className="button" onClick={shuffleCards}>New Game</button>
+        <p className="text-md mb-2 mt-8">Quick peek once 😏</p>
+        <button className="button" onClick={handlePeek}>Peek</button>
+        <p className="font-semibold text-2xl mt-10 ">
+          🏆 Best Time: {highScore === 9999 ? '--:--' : `${String(Math.floor(highScore / 60)).padStart(2, '0')}:${String(highScore % 60).padStart(2, '0')}`}
+        </p>
+      </div>
+
+      <p className="time hidden lg:flex">
+        <img className="w-[32px] h-[30px] rounded-2xl bg-gray-700 mr-2" src="/src/assets/img/stopwatch.png" alt="timer" />
+        Time: {String(Math.floor(timer / 60)).padStart(2, '0')}:{String(timer % 60).padStart(2, '0')}
+      </p>
+
+      <div className="grid grid-cols-6 p-3 mx-12 my-6 gap-1">
+        {card.map(c => (
+          <Card
+            key={c.id}
+            handleChoice={handleChoice}
+            card={c}
+            flipped={c === choiceOne || c === choiceTwo || c.matched}
+            disable={disable}
+          />
+        ))}
+      </div>
+
+      {showPopUp && (
+        <PopUp message={popUpMsg} onClose={() => setShowPopUp(false)} newGame={() => { shuffleCards(); setShowPopUp(false); }} />
+      )}
+    </div>
+  );
 }
 
 export default App
